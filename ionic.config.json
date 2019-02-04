@@ -1,0 +1,8 @@
+{
+  "name": "ExpenseTracker",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular",
+  "id": "724e4811"
+}

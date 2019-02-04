@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons start left>
+      <button ion-button menuToggle icon-only color="royal" >
+        <ion-icon name="menu"></ion-icon>
+        <ion-title>Scan Image</ion-title>
+      </button>
+
+    </ion-buttons>
+    
+    <ion-buttons end>
+      <button ion-button icon-only color="royal">
+        <ion-icon name="person-add"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content padding>
+	<ion-card>
+    <ion-card-header>Image Preview</ion-card-header>
+      <ion-card-content>
+
+        <button ion-button full (click)='recognize()'>Recognize Image</button>
+        <button ion-button full (click)="fileInput.click()">Choose Image</button>
+      </ion-card-content>
+    </ion-card>
+    <input
+  style="display: none"
+  type="file" (change)="onImgChanged($event)"
+  #fileInput>
+      <ion-card *ngIf='myImage'>
+        <img [src]=myPhoto />
+      </ion-card>
+ 
+   
+ 
+    
+</ion-content>

@@ -1,0 +1,12 @@
+<div style="text-align: left;">
+    Budgeting Status: <b>{{statusMsg}}</b>
+</div>
+<div class="progress-outer">
+  <div>  
+  </div>
+  <div  id = "progressbarDiv" class="progress-inner" background-color ="#33A7C3" [style.width]="progress + '%'">
+   {{getProgress()}}{{unit}}
+       <!-- {{getProgress()| number: '1.0-0'}}% -->
+   
+  </div>
+</div>

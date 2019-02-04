@@ -1,0 +1,34 @@
+
+<ion-content >
+	<div style="height: 100px; background-color: #9BA77F; background-size: 100% 100%; margin-top: 20px;" text-center >
+			<img src="assets/img/sample.png" style="width: 50px;">			
+	</div>
+		
+	<ion-card>
+		<button ion-item (click)="goToDash()" style="font-size: 10px;">
+			<ion-icon item-start name='home' style="font-size: 20px;">&nbsp;Overview</ion-icon>
+		</button>
+	</ion-card>
+	<ion-card>		
+		<button ion-item (click)="goToExp()" style="font-size: 10px;">
+			<ion-icon item-start name='filing' style="font-size: 20px;">&nbsp;Expense History</ion-icon>
+		</button>
+	</ion-card>
+	<ion-item-divider></ion-item-divider>
+	<ion-card>		
+		<button ion-item (click)="goToAcct()" style="font-size: 10px;">
+			<ion-icon item-start name='contact' style="font-size: 20px;">&nbsp;Account</ion-icon>
+		</button>
+	</ion-card>
+	<ion-card>		
+		<button ion-item (click)="goToHelp()" style="font-size: 10px;">
+			<ion-icon item-start name='help-circle' style="font-size: 20px;">&nbsp;Help</ion-icon>
+		</button>
+	</ion-card>
+	<ion-card>		
+		<button ion-item (click)="goToTerms()" style="font-size: 10px;">
+			<ion-icon item-start name='information-circle' style="font-size: 20px;">&nbsp;Account</ion-icon>
+		</button>
+	</ion-card>
+</ion-content>
+
