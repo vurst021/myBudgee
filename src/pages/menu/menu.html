@@ -1,34 +1,87 @@
+<!-- <ion-menu [content] = "content" side="right"> -->
 
-<ion-content >
-	<div style="height: 100px; background-color: #9BA77F; background-size: 100% 100%; margin-top: 20px;" text-center >
-			<img src="assets/img/sample.png" style="width: 50px;">			
-	</div>
-		
-	<ion-card>
-		<button ion-item (click)="goToDash()" style="font-size: 10px;">
-			<ion-icon item-start name='home' style="font-size: 20px;">&nbsp;Overview</ion-icon>
+<ion-header>
+    <ion-navbar>
+      <ion-title>
+       		 Menu
+      </ion-title>
+    </ion-navbar>
+  </ion-header>
+
+<ion-content padding style="margin-top: 50px;" >
+
+<!-- 	<ion-item>
+		<button ion-item (click)="goToDash()" style="font-size: 15px;">
+			<ion-icon item-start name='home' style="font-size: 15px;"><ion-label>&nbsp;Overview</ion-label></ion-icon>
 		</button>
-	</ion-card>
-	<ion-card>		
-		<button ion-item (click)="goToExp()" style="font-size: 10px;">
-			<ion-icon item-start name='filing' style="font-size: 20px;">&nbsp;Expense History</ion-icon>
+	</ion-item>
+	<ion-item>		
+		<button ion-item (click)="goToExp()" style="font-size: 15px;">
+			<ion-icon item-start name='filing' style="font-size: 15px;">&nbsp;Expense History</ion-icon>
 		</button>
-	</ion-card>
+	</ion-item>
 	<ion-item-divider></ion-item-divider>
-	<ion-card>		
-		<button ion-item (click)="goToAcct()" style="font-size: 10px;">
-			<ion-icon item-start name='contact' style="font-size: 20px;">&nbsp;Account</ion-icon>
+	<ion-item>		
+		<button ion-item (click)="goToAcct()" style="font-size: 15px;">
+			<ion-icon item-start name='contact' style="font-size: 15px;">&nbsp;Account</ion-icon>
 		</button>
-	</ion-card>
-	<ion-card>		
-		<button ion-item (click)="goToHelp()" style="font-size: 10px;">
-			<ion-icon item-start name='help-circle' style="font-size: 20px;">&nbsp;Help</ion-icon>
+	</ion-item>
+	<ion-item>		
+		<button ion-item (click)="goToHelp()" style="font-size: 15px;">
+			<ion-icon item-start name='help-circle' style="font-size: 15px;">&nbsp;About</ion-icon>
 		</button>
-	</ion-card>
-	<ion-card>		
-		<button ion-item (click)="goToTerms()" style="font-size: 10px;">
-			<ion-icon item-start name='information-circle' style="font-size: 20px;">&nbsp;Account</ion-icon>
+	</ion-item>
+	<ion-item>		
+		<button ion-item (click)="goToTerms()" style="font-size: 15px;">
+			<ion-icon item-start name='information-circle' style="font-size: 15px;">&nbsp;Terms and Conditions</ion-icon>
 		</button>
-	</ion-card>
-</ion-content>
+	</ion-item>
+	<ion-item-divider></ion-item-divider>
+	<ion-item>
+		<button ion-item (click)="logOut()" style="font-size: 15px;">
+			<ion-icon item-start name='log-out' style="font-size: 15px;">&nbsp;Log Out</ion-icon>
+		</button>
+	</ion-item>
+ -->
+	<ion-list>
+    <button ion-item (click)="goToDash()">
+      <ion-icon name="home" class='iconMenu' item-start></ion-icon>
+      Overview
+    </button>
 
+    <button ion-item (click)="goToExp()">
+      <ion-icon name="filing" class='iconMenu' item-start></ion-icon>
+      Expense History
+    </button>
+
+    <ion-item-divider></ion-item-divider>
+
+    <button ion-item (click)="goToAcct()">
+      <ion-icon name="contact" class='iconMenu' item-start></ion-icon>
+      Account
+    </button>
+
+    <button ion-item (click)="goToHelp()">
+      <ion-icon name="help-circle" class='iconMenu' item-start></ion-icon>
+      About
+    </button>
+
+    <button ion-item (click)="goToTerms()" >
+      <ion-icon name="information-circle" class='iconMenu' item-start></ion-icon>
+      Terms and Conditions
+    </button>
+
+    <ion-item-divider></ion-item-divider>
+
+    <button ion-item (click)="logOut()">
+      <ion-icon name="log-out" class='iconMenu' item-start></ion-icon>
+      Log Out
+    </button>
+
+  </ion-list>
+</ion-content>
+<!-- 
+</ion-menu> -->
+<!-- 
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false" ></ion-nav>
+ -->

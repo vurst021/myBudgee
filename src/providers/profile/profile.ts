@@ -1,4 +1,5 @@
 import firebase, { User } from 'firebase/app';
+import 'firebase/auth';
 import 'firebase/database';
 import { Injectable } from '@angular/core';
 
@@ -39,9 +40,9 @@ updateBudget(monthlyBudget:number): Promise<any>{
 updateMonthlySpending(monthSpending:number): Promise<any>{
   return this.userProfile.update({monthSpending});
 }
-/*
+
 updateEmail(newEmail: string, password: string): Promise<any> {
-  const credential: AuthCredential = firebase.auth.
+  const credential: firebase.auth.AuthCredential = firebase.auth.
     EmailAuthProvider.credential(
       this.currentUser.email,
       password
@@ -58,8 +59,8 @@ updateEmail(newEmail: string, password: string): Promise<any> {
     });
 }
 
-updatePassword(newPassword: string, oldPassword: string): Promise<any> {
-  const credential: AuthCredential = firebase.auth
+updatePassword(oldPassword: string, newPassword: string ): Promise<any> {
+  const credential: firebase.auth.AuthCredential = firebase.auth
     .EmailAuthProvider.credential(
       this.currentUser.email,
       oldPassword
@@ -76,6 +77,27 @@ updatePassword(newPassword: string, oldPassword: string): Promise<any> {
       console.error(error);
     });
 }
-*/
+
+  // updateimage(imageurl) {
+  //       var promise = new Promise((resolve, reject) => {
+  //           firebase.auth().currentUser.updateProfile({
+  //               displayName: firebase.auth().currentUser.displayName,
+  //               photoURL: imageurl      
+  //           }).then(() => {
+  //               firebase.database().ref('/userProfile/' + firebase.auth().currentUser.uid).update({
+  //               displayName: firebase.auth().currentUser.displayName,
+  //               photoURL: imageurl,
+  //               uid: firebase.auth().currentUser.uid
+  //               }).then(() => {
+  //                   resolve({ success: true });
+  //                   }).catch((err) => {
+  //                       reject(err);
+  //                   })
+  //           }).catch((err) => {
+  //                 reject(err);
+  //              })  
+  //       })
+  //       return promise;
+  //   }
 
 }

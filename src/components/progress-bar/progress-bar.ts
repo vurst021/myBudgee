@@ -73,7 +73,7 @@ export class ProgressBarComponent {
       if(value > 100){
       */
        // when excessive
-       this.statusMsg = "Excceed";
+       this.statusMsg = "Exceed";
        this.unit = "%";
        (document.getElementById('progressbarDiv') as HTMLImageElement).style.backgroundColor = "#ff6666";
        (document.getElementById('progressbarDiv') as HTMLImageElement).style.width = "100%";

@@ -70,6 +70,13 @@ updateExpense(expenseId:string,date:string,amount:number,desc:string,remark:stri
 
   return this.expenseListRef.child(expenseId).update({date, amount,desc,remark,category});
 }
+
+remove(expenseId:string){
+  return this.expenseListRef.child(expenseId).remove()
+}
+
+
+
 setCurrentMonthlySpending(currentMonthTotalSpending:number){
   this.currentMonthTotalSpend = currentMonthTotalSpending;
   

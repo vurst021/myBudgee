@@ -34,25 +34,32 @@
   </ion-header>
 
   <ion-content>
+    <!-- <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles"
+      refreshingText="Refreshing...">
+    </ion-refresher-content> -->
       <ion-content>
           <ion-card>
-            <ion-card>
+            <ion-card >
               <ion-card-header>
                Monthly Spending Category
               </ion-card-header>
-              <ion-card-content>
-                <canvas #pieCanvas></canvas>
-                <div style="text-align:center">
+              <ion-card-content >
+                <canvas #pieCanvas style="height: 300px;width: 100%;"></canvas>
+                <div style="text-align:center;">
                     <ion-row >
                       <ion-col>
-                  Total Spending for the Month:<b> $ {{currentMonthSpending | number:'1.2-2' }} </b> 
+                  Total Spending for the Month:<b> P {{currentMonthSpending | number:'1.2-2' }} </b> 
                 </ion-col>
                   </ion-row>     
                 </div>
                 <div style="text-align:center">
                     <ion-row >
                         <ion-col col-10>
-                  Current Monthly Budget:<b> $ {{currentBudget | number:'1.2-2' }} </b> 
+                  Current Monthly Budget:<b> P {{currentBudget | number:'1.2-2' }} </b> 
                 </ion-col>
                       <ion-col col-2 id="edit" >
                         <a (click)=editMonthlyBudget()>edit</a>
@@ -83,12 +90,12 @@
             </ion-card>
             <ion-card>
             <ion-card-header>
-              Daily Spending1
+              Daily Spending
               </ion-card-header>
               <ion-card-content>
-                <canvas #dailyBarCanvas></canvas>
+                <canvas #dailyBarCanvas style="height: 300px;width: 100%;"></canvas>
                 <div style="text-align:center">
-                  Total Spending for the Week:<b> $ {{totalWeeklySpend |  number:'1.2-2' }} </b>
+                  Total Spending for the Week:<b> P {{totalWeeklySpend |  number:'1.2-2' }} </b>
                 </div>
               </ion-card-content>
            
@@ -96,15 +103,14 @@
             Monthly Spending
             </ion-card-header>
             <ion-card-content>
-              <canvas #barCanvas></canvas>
+              <canvas #barCanvas style="height: 300px;width: 100%;"></canvas>
             </ion-card-content>
           </ion-card>
           </ion-card>
     
 
  <!--  <button ion-button block >Scan Barcode</button> --> 
-    <button ion-button block (click)="goToAddExpense()">Add Expense</button>
-    <button ion-button block (click)="goToViewExpense()">View Expenses</button>
+    
 
   <!-- <h1>
       <button ion-button color="dark" full round (click)="scan()">Start Scan</button>
@@ -126,18 +132,18 @@
   -->
 
     <ion-fab right bottom style="right: 25px;">
-      <button ion-fab color="light"><ion-icon name="add"></ion-icon></button>
+      <button ion-fab color="primary"><ion-icon name="add"></ion-icon></button>
       <ion-fab-list side="top">
-        <button ion-fab>
-          <ion-icon name="camera" (click)="scan()"></ion-icon>
+        <button ion-fab (click)="goToScan()">
+          <ion-icon name="camera" ></ion-icon>
           <!-- <ion-label>Use Camera</ion-label> -->
         </button>
-        <button ion-fab>
-          <ion-icon name="images" (click)="gallery()"></ion-icon>
+        <button ion-fab (click)="gallery()">
+          <ion-icon name="images" ></ion-icon>
           <!-- <ion-label>Use from Library</ion-label> -->
         </button>
-        <button ion-fab>
-          <ion-icon name="create" (click)="goToAddExpense()"></ion-icon>
+        <button ion-fab (click)="goToAddExpense()">
+          <ion-icon name="create" ></ion-icon>
           <!-- <ion-label>Manual Input</ion-label> -->
         </button>
        

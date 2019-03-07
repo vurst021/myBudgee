@@ -14,15 +14,21 @@ import { SignupPage } from '../pages/signup/signup';
 import { UpdateexpensePage } from '../pages/updateexpense/updateexpense';
 import { AddscanitemPage } from '../pages/addscanitem/addscanitem';
 import { MenuPage } from '../pages/menu/menu';
-import { TabsPage } from '../pages/tabs/tabs';
 import { AccountPage } from '../pages/account/account';
 import { TermsPage } from '../pages/terms/terms';
 import { HelpPage } from '../pages/help/help';
 import { ScanPage } from '../pages/scan/scan';
 import { ScanDetailsPage } from '../pages/scan-details/scan-details';
+import { ResetpasswordPage } from '../pages/resetpassword/resetpassword';
+import { ScannyPage } from '../pages/scanny/scanny';
 
-import { AngularFireModule } from '@angular/fire/';
-import { AngularFireAuth } from '@angular/fire/auth';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireAuthModule, AngularFireAuth } from '@angular/fire/auth';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireStorageModule } from '@angular/fire/storage';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { AngularFireDatabase } from '@angular/fire/database';
+
 import { firebaseConfig } from '../config';
 // import { NgxErrorsModule } from '@ultimate/ngxerrors';
 // import { AuthService } from '../services/auth.service';
@@ -41,7 +47,15 @@ import { OrderModule } from 'ngx-order-pipe';
 import { AddexpensePageModule } from '../pages/addexpense/addexpense.module';
 import { AddscanitemPageModule } from '../pages/addscanitem/addscanitem.module';
 import { ProgressBarComponent } from '../components/progress-bar/progress-bar';
-import { Camera } from '@ionic-native/camera/ngx';
+import { Camera, CameraOptions } from '@ionic-native/camera';
+import { IonicStorageModule } from '@ionic/storage';
+// import { ImghandlerProvider } from '../providers/imghandler/imghandler';
+
+
+import { File } from '@ionic-native/file';
+import { FileChooser } from '@ionic-native/file-chooser';
+import { FilePath } from '@ionic-native/file-path';
+
 
 
 @NgModule({
@@ -49,7 +63,6 @@ import { Camera } from '@ionic-native/camera/ngx';
     MyApp,
     HomePage,
     MenuPage,
-    TabsPage,
    // LoginPage,
     DashboardPage,
     //AddexpensePage,
@@ -60,7 +73,9 @@ import { Camera } from '@ionic-native/camera/ngx';
     HelpPage,
     TermsPage,
     ScanPage,
-    ScanDetailsPage
+    ScanDetailsPage,
+    ResetpasswordPage,
+    ScannyPage,
 
    // AddscanitemPage
     
@@ -76,8 +91,13 @@ import { Camera } from '@ionic-native/camera/ngx';
     AddexpensePageModule,
     HttpClientModule,
     OrderModule,
+    AngularFirestoreModule, // imports firebase/firestore, only needed for database features
+    AngularFireAuthModule, // imports firebase/auth, only needed for auth features,
+    AngularFireStorageModule, // imports firebase/storage only needed for storage features
+    AngularFireDatabaseModule,
     AddscanitemPageModule,
-    HttpModule
+    HttpModule,
+    IonicStorageModule.forRoot(),
     
   
   ],
@@ -86,7 +106,6 @@ import { Camera } from '@ionic-native/camera/ngx';
     MyApp,
     HomePage,
     LoginPage,
-    TabsPage,
     MenuPage,
     DashboardPage,
     AddexpensePage,
@@ -98,7 +117,9 @@ import { Camera } from '@ionic-native/camera/ngx';
     TermsPage,
     HelpPage,
     ScanPage,
-    ScanDetailsPage
+    ScanDetailsPage,
+    ResetpasswordPage,
+    ScannyPage
 
   ],
   providers: [
@@ -113,7 +134,8 @@ import { Camera } from '@ionic-native/camera/ngx';
     ExpenseProvider,
     BarcodeScanner,
     Toast,
-    DataServiceProvider
+    DataServiceProvider,
+    // ImghandlerProvider
   ]
 })
 export class AppModule {}

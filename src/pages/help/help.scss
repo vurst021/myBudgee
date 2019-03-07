@@ -1,3 +1,22 @@
 page-help {
+	div.toolbar-background.toolbar-background-md{
+        background-color: #da9429;
+    }
 
+    .ios, .md {
+
+		  page-intro {
+
+		    ion-slide {
+		      background-color: #32db64;
+		    }
+
+		    ion-slide img {
+		      height: 70vh !important;
+		      width: auto !important;
+		    }
+
+		  }
+
+		}
 }

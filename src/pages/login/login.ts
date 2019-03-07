@@ -6,7 +6,7 @@ import { SignupPage } from '../signup/signup';
 import { DashboardPage } from '../dashboard/dashboard';
 import { AuthProvider } from '../../providers/auth/auth';
 import { EmailValidator } from '../../validators/email';
-import { TabsPage} from '../tabs/tabs';
+import { ResetpasswordPage } from '../resetpassword/resetpassword'
 
 
 /**
@@ -83,7 +83,7 @@ export class LoginPage {
   }
 
   goToResetPassword() {
-    // this.navCtrl.push(ResetPasswordPage);
+    this.navCtrl.push(ResetpasswordPage);
   }
 
   ionViewDidLoad() {
@@ -116,7 +116,7 @@ export class LoginPage {
       this.authProvider.loginUser(email, password).then(
         authData => {
           this.loading.dismiss().then(() => {
-            this.navCtrl.setRoot(TabsPage);
+            this.navCtrl.setRoot(DashboardPage);
           });
         },
         error => {

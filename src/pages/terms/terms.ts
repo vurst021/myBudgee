@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { MenuPage } from '../menu/menu';
+
 
 /**
  * Generated class for the TermsPage page.
@@ -20,6 +22,11 @@ export class TermsPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad TermsPage');
+  }
+
+  goToMenu() {
+    // this.auth.signOut();
+    this.navCtrl.push(MenuPage);
   }
 
 }

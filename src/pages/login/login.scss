@@ -13,9 +13,9 @@ ion-content {
     overflow: hidden;
   }
   .logo {
-    width: 55%;
+    width: 100%;
     height: auto;
-    max-width: 12em;
+    max-width: 13em;
     margin: 10 auto;
     padding-bottom: 20px;
   }
@@ -33,9 +33,7 @@ ion-content {
       max-width: 40%;
     }
   }
-  span {
-    color: white;
-  }
+
   ion-item {
     // border-radius: 30px !important;
     padding-left: 10px !important;
@@ -47,11 +45,5 @@ ion-content {
   ion-list {
     margin: 0;
   }
-  .login-button {
-    width: 100%;
-    // border-radius: 30px;
-    font-size: 0.9em;
-    // border: 1px solid #fff;
-    background-color: #39acdc;
-  }
+  
 }

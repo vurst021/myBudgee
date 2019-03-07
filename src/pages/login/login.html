@@ -1,14 +1,14 @@
-<ion-content padding class="transparent-header" [ngStyle]="{'background-image': 'url(' + backgroundImage +')'}">
+<ion-content padding class="transparent-header">
   <ion-header>
     <ion-navbar>
     </ion-navbar>
   </ion-header>
   <form (ngSubmit) = "loginUser()" [formGroup] = "loginForm">
-  <div padding>
+  <div padding style="margin-top: 100px;">
 
     <ion-row>
       <ion-col>
-        <img class="logo" src="assets/imgs/budgee.png" />
+        <img class="logo" src="assets/imgs/logo2.png" />
       </ion-col>
     </ion-row>
     <ion-row>
@@ -16,7 +16,7 @@
         <ion-list inset class="no-border">
           <ion-item>
             <ion-label >Email</ion-label>
-            <ion-input type="text" formControlName= "email" [class.invalid]="!loginForm.controls.email.valid && blur"></ion-input>
+            <ion-input type="email" formControlName= "email" [class.invalid]="!loginForm.controls.email.valid && blur"></ion-input>
           </ion-item>
               
 
@@ -47,17 +47,21 @@
             </div> 
           <div class="form-error" style="color:red">{{loginError}}</div>-->
 
-        <button ion-button class="login-button" type="submit" [disabled]="!loginForm.valid">Login</button>
+        <button ion-button full class="login-button" type="submit" [disabled]="!loginForm.valid" color='primary'>Login</button>
       </ion-col>
       
     </ion-row>
     <ion-row>
       <ion-col>
         <div (click)="goToSignup()">
-          <span> Create a new account</span>
+          <span style="color: #808080;"> Create a new account</span>
         </div>
       </ion-col>
     </ion-row>
   </div>
+
+  <button ion-button block clear (click)="goToResetPassword()">
+    I forgot my password 🙁
+  </button>
 </form>
 </ion-content>

@@ -1,20 +1,20 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-buttons start left>
-      <button ion-button menuToggle icon-only color="royal" >
-        <ion-icon name="menu"></ion-icon>
-        <ion-title>Scan Image</ion-title>
-      </button>
 
-    </ion-buttons>
-    
-    <ion-buttons end>
-      <button ion-button icon-only color="royal">
-        <ion-icon name="person-add"></ion-icon>
-      </button>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-header>
+<ion-header>
+    <ion-navbar>
+      <ion-title>
+        Scan Receipt
+      </ion-title>
+     
+      <ion-buttons end>
+        <!-- <button ion-button icon-only (click)="goToLogin()">
+          <ion-icon name="log-out"></ion-icon>
+        </button> -->
+        <button ion-button icon-only menuToggle>
+          <ion-icon name="menu"></ion-icon>
+        </button>
+      </ion-buttons>
+    </ion-navbar>
+  </ion-header>
 
 
 <ion-content padding>
@@ -22,8 +22,9 @@
     <ion-card-header>Image Preview</ion-card-header>
       <ion-card-content>
 
-        <button ion-button full (click)='recognize()'>Recognize Image</button>
+        <button ion-button full (click)='recognize()' [disabled]="!myImage">Recognize Image</button>
         <button ion-button full (click)="fileInput.click()">Choose Image</button>
+        <button ion-button full (click)="takePhoto()">Take Image</button>
       </ion-card-content>
     </ion-card>
     <input

@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController, AlertController } from 'ionic-angular';
 import { ExpensehistoryPage } from '../expensehistory/expensehistory';
 import { ExpenseProvider } from '../../providers/expense/expense';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { DashboardPage } from '../dashboard/dashboard';
+import { MenuPage } from '../menu/menu';
+
 
 /**
  * Generated class for the AddexpensePage page.
@@ -22,7 +24,11 @@ export class AddexpensePage {
   addExpenseForm: FormGroup;
   public errorMessage: string; 
 
-  constructor(public navCtrl: NavController,fb:FormBuilder,public navParams: NavParams ,public expenseProvider: ExpenseProvider) {
+  constructor(public navCtrl: NavController,fb:FormBuilder,
+    public navParams: NavParams ,
+    public expenseProvider: ExpenseProvider,
+    public toastCtrl: ToastController,
+    public alertCtrl: AlertController) {
     this.addExpenseForm = fb.group({
       date: [
         "",
@@ -62,13 +68,13 @@ export class AddexpensePage {
     console.log('ionViewDidLoad AddexpensePage');
   }
   goToViewExpense(){
-    this.navCtrl.setRoot(ExpensehistoryPage);
+    this.navCtrl.push(ExpensehistoryPage);
   }
   goToDashboard(){
     this.navCtrl.setRoot(DashboardPage);
   }
   goToExpenseHistory(){
-    this.navCtrl.setRoot(ExpensehistoryPage);
+    this.navCtrl.push(ExpensehistoryPage);
   }
   createExpense(
     spendDate: string,
@@ -87,16 +93,28 @@ export class AddexpensePage {
         spendRemark = "";
       }
       //spendDate =  this.formatdmy(spendDate);
-  //    console.log("Spend date is here " + spendDate);
+    //console.log("Spend date is here " + spendDate);
     //  var spendDate2 = new Date(spendDate.replace(/-/g, "/"));
     //  console.log("spend date 2 is here " + spendDate2);
       spendDate = this.formatdmy(spendDate);
       this.expenseProvider
       .createExpense(spendDate,spentAmt,spendDesc,spendRemark,this.spendCate)
       .then(newExpense =>{
+        this.addExpenseForm.reset();
+        const toast = this.toastCtrl.create({
+          message: 'The Expense was added to Database',
+          duration: 3000
+        });
+        toast.present();
         this.goToViewExpense()
       });
     
   }
+  goToMenu() {
+    // this.auth.signOut();
+    this.navCtrl.push(MenuPage);
+  }
+
+
 
 }

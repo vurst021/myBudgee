@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController, AlertController} from 'ionic-angular';
 import { DashboardPage } from '../dashboard/dashboard';
 import { AddexpensePage } from '../addexpense/addexpense';
 import { ExpenseProvider } from '../../providers/expense/expense';
 //import { UpdateExpensePage } from '../updateexpense/updateexpense';
+import { MenuPage } from '../menu/menu';
+
 
 /**
  * Generated class for the ExpensehistoryPage page.
@@ -27,7 +29,12 @@ export class ExpensehistoryPage {
   cat: string = "tab1"
   public loadedSpendingList: Array<any>;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,public expenseProvider:ExpenseProvider) {
+  constructor(public navCtrl: NavController, 
+    public navParams: NavParams,
+    public expenseProvider:ExpenseProvider,
+    public toastCtrl: ToastController,
+    public alertCtrl: AlertController 
+    ) {
     
   }
 
@@ -216,16 +223,56 @@ export class ExpensehistoryPage {
     });
   }
 
+  alertRemove(expenseId: string){
+    const confirm = this.alertCtrl.create({
+      title: 'Delete',
+      message: 'Are You sure you want to remove this expense?',
+      buttons: [
+        {
+          text: 'Cancel',
+          handler: () => {
+            console.log('Disagree clicked');
+          }
+        },
+        {
+          text: 'Confirm',
+          handler: () => {
+            this.remove(expenseId)
+          }
+        }
+      ]
+    });
+    confirm.present();
+  }
+
+  remove(expenseId: string){
+    this.expenseProvider.remove(expenseId)
+    .then(() => { 
+        console.log('success');
+          const toast = this.toastCtrl.create({
+          message: 'The Expense was succesfully Removed',
+          duration: 3000
+        });
+        toast.present(); 
+      })
+    .catch(error => {console.log('update ERROR: ' + error.message); });
+
+  }
+ 
 
 
   goToDashboard(){
     this.navCtrl.setRoot(DashboardPage);
   }
   goToAddExpense(){
-   this.navCtrl.setRoot(AddexpensePage);
- }
- goToUpdateExpense(expenseId: string):void {
-  this.navCtrl.push('UpdateexpensePage', { expenseId: expenseId });
-}
+    this.navCtrl.setRoot(AddexpensePage);
+  }
+  goToUpdateExpense(expenseId: string):void {
+    this.navCtrl.push('UpdateexpensePage', { expenseId: expenseId });
+  }
+  goToMenu() {
+    // this.auth.signOut();
+    this.navCtrl.push(MenuPage);
+  }
 }
 

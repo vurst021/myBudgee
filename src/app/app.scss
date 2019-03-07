@@ -71,8 +71,8 @@
   .toolbar-background,
   ion-navbar,
   ion-header {
-    background: transparent !important;
-    background-color: transparent !important;
+    background: transparent;
+    background-color: transparent;
   }
   .header-md::after,
   .toolbar-background-ios {
@@ -198,4 +198,5 @@
     background-color: map-get($colors, light);
     color: map-get($colors, primary);
   }
+
 }

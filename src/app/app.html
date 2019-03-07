@@ -1,1 +1,65 @@
-<ion-nav [root]="rootPage"></ion-nav>
+<!-- style type="text/css">
+	div.toolbar-background.toolbar-background-md{
+        background-color: #da9429;
+    }
+
+	ion-icon.iconMenu{
+		color: #da9429;
+	}
+</style>
+
+
+<ion-menu [content] = "content" side="right">
+	<ion-header>
+	  <ion-navbar>
+	    <ion-title>
+		 Menu
+	    </ion-title>
+	  </ion-navbar>
+	</ion-header>
+
+	<ion-content padding style="margin-top: 50px;" >
+		<ion-list>
+		    <button ion-item (click)="goToDash()">
+		      <ion-icon name="home" class='iconMenu' item-start></ion-icon>
+		      Overview
+		    </button>
+
+		    <button ion-item (click)="goToExp()">
+		      <ion-icon name="filing" class='iconMenu' item-start></ion-icon>
+		      Expense History
+		    </button>
+
+		    <ion-item-divider></ion-item-divider>
+
+		    <button ion-item (click)="goToAcct()">
+		      <ion-icon name="contact" class='iconMenu' item-start></ion-icon>
+		      Account
+		    </button>
+
+		    <button ion-item (click)="goToHelp()">
+		      <ion-icon name="help-circle" class='iconMenu' item-start></ion-icon>
+		      About
+		    </button>
+
+		    <button ion-item (click)="goToTerms()" >
+		      <ion-icon name="information-circle" class='iconMenu' item-start></ion-icon>
+		      Terms and Conditions
+		    </button>
+
+		    <ion-item-divider></ion-item-divider>
+
+		    <button ion-item (click)="logOut()">
+		      <ion-icon name="log-out" class='iconMenu' item-start></ion-icon>
+		      Log Out
+		    </button>
+
+		  </ion-list>
+		
+	</ion-content>
+</ion-menu>
+ -->
+<ion-nav [root]="rootPage" #content ></ion-nav>
+
+
+

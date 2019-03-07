@@ -1,17 +1,17 @@
-<ion-content padding class="transparent-header" [ngStyle]="{'background-image': 'url(' + backgroundImage +')'}">
-    <ion-header>
-      <ion-navbar>
-      </ion-navbar>
-    </ion-header>
+<ion-content padding class="transparent-header">
+  <ion-header>
+    <ion-navbar>
+    </ion-navbar>
+  </ion-header>
     <form [formGroup]="signupForm" (submit)="signupUser()">
-    <div padding>
+    <div padding style="margin-top: 100px;">
       <ion-row>
         <ion-col>
-          <img class="logo" src="assets/imgs/logo1.png" />
+          <img class="logo" src="assets/imgs/logo2.png" />
         </ion-col>
       </ion-row>
       <ion-row>
-        <ion-col>
+        <ion-col> 
           <ion-list inset class="no-border">
             <ion-item>
               <ion-label>Email</ion-label>
@@ -49,7 +49,7 @@
               Your password needs more than 6 characters.
             </div>
  
-          <button ion-button class="login-button" type="submit" [disabled]="!signupForm.valid">Sign up</button>
+          <button ion-button full color="primary" class="login-button" type="submit" [disabled]="!signupForm.valid">Sign up</button>
         </ion-col>
       </ion-row>
       <ion-row>

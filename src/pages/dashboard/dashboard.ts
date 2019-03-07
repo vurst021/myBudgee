@@ -1,5 +1,5 @@
 import { Component, ViewChild,Input,ChangeDetectorRef } from '@angular/core';
-import { IonicPage, NavController, NavParams, Footer, Alert, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Footer, Alert, AlertController, ToastController } from 'ionic-angular';
 import { Chart } from 'chart.js';
 import { AddexpensePage } from '../addexpense/addexpense';
 import { AddscanitemPage } from '../addscanitem/addscanitem';
@@ -15,7 +15,7 @@ import 'rxjs/add/operator/map';
 import { ProfileProvider } from '../../providers/profile/profile';
 import { ScanPage } from '../scan/scan';
 import { Camera, CameraOptions } from '@ionic-native/camera';
-
+import { ScannyPage } from '../scanny/scanny'; 
 
 
 /**
@@ -31,6 +31,18 @@ import { Camera, CameraOptions } from '@ionic-native/camera';
   templateUrl: 'dashboard.html',
 })
 export class DashboardPage {
+
+  // options: CameraOptions = {
+  //   quality: 100,
+  //   destinationType: this.camera.DestinationType.DATA_URL,
+  //   encodingType: this.camera.EncodingType.JPEG,
+  //   mediaType: this.camera.MediaType.PICTURE,
+  //   cameraDirection:0
+  // }
+  
+
+
+  myImage:any;
   @Input('progress') progress;
   @ViewChild('barCanvas') barCanvas;
   @ViewChild('lineCanvas') lineCanvas;
@@ -105,7 +117,9 @@ export class DashboardPage {
     public dataService: DataServiceProvider,
     public alertCtrl:AlertController,
     public profileProvider:ProfileProvider,
-    private cdr: ChangeDetectorRef) {
+    private cdr: ChangeDetectorRef,
+    public camera: Camera,
+    public toastCtrl: ToastController,) {
 
 
     this.jan = 0;
@@ -136,7 +150,7 @@ export class DashboardPage {
 
 
 
-  scan() {
+  // scan() {
  //   this.selectedProduct = {};
     // this.barcodeScanner.scan().then((barcodeData) => {
 
@@ -174,7 +188,7 @@ export class DashboardPage {
   //   );
    
 
-  }
+  // }
 
 
   editMonthlyBudget():void {
@@ -184,7 +198,7 @@ export class DashboardPage {
       inputs: [
         {
           name: "BudgetAmount",
-          placeholder: "$",
+          placeholder: "P",
           value: this.userProfile.monthlyBudget
         },
        
@@ -816,7 +830,7 @@ export class DashboardPage {
         labels: this.stringDateArray,
 
         datasets: [{
-          label: 'Amount($)',
+          label: 'Amount(P)',
           data: this.barChartData1,
           backgroundColor: [
             'rgb(88, 189, 196)',
@@ -912,11 +926,11 @@ export class DashboardPage {
    
   }
   goToAddExpense() {
-    this.navCtrl.setRoot(AddexpensePage);
+    this.navCtrl.push(AddexpensePage);
   }
 
   goToViewExpense() {
-    this.navCtrl.setRoot(ExpensehistoryPage);
+    this.navCtrl.push(ExpensehistoryPage);
   }
   goToMenu() {
     // this.auth.signOut();
@@ -924,7 +938,55 @@ export class DashboardPage {
   }
  
   gallery(){
-    this.navCtrl.setRoot(ScanPage);
+    this.navCtrl.push(ScanPage);
   }
+
+  doRefresh(event) {
+    console.log('Begin async operation');
+
+    this.getWeekData();
+   
+    
+    this.profileProvider.getUserProfile().on("value", userProfileSnapshot => {
+      this.userProfile = userProfileSnapshot.val();
+       this.currentBudget = userProfileSnapshot.val().monthlyBudget;
+       this.currentMonthSpending = userProfileSnapshot.val().monthSpending;
+
+      // solve the progress bar 
+       this.cdr.detectChanges();
+       event.target.complete();
+    });
+  }
+
+  scan(){
+    const options: CameraOptions = {
+      quality:100,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE,
+      allowEdit:true,
+      correctOrientation:true,
+      saveToPhotoAlbum:true,
+
+    }
+
+    this.camera.getPicture(options).then((imageData)=>{
+      this.myImage = 'data:image/jpeg;base64,' + imageData;
+      const toast = this.toastCtrl.create({
+          message: 'The Image was captured successfully',
+          duration: 3000
+        });
+        toast.present();
+      this.navCtrl.push(ScanPage);
+         
+     },(err)=>{
+
+    });
+  }
+
+  goToScan(){
+    this.navCtrl.setRoot(ScannyPage);
+  }
+
 
 }

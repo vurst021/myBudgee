@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 import { ExpenseProvider } from '../../providers/expense/expense';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ExpensehistoryPage } from '../expensehistory/expensehistory';
+import { MenuPage } from '../menu/menu';
 
 /**
  * Generated class for the UpdateexpensePage page.
@@ -32,12 +33,16 @@ export class UpdateexpensePage {
   public year:any;
   selected_cate:any;
   catgories: string[] = ['Food','Transport','Shopping','Entertainment','Education','Others'];
-
+  selectedFile:any;
   updateExpenseForm:FormGroup;
   expenseId: string;
+  expenseImg: string;
   public errorMessage: string; 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,public expenseProvider:ExpenseProvider,fb:FormBuilder) {
+  constructor(public navCtrl: NavController, 
+    public navParams: NavParams,
+    public expenseProvider:ExpenseProvider,fb:FormBuilder,
+    public toastCtrl: ToastController) {
   
   this.expenseId = this.navParams.get("expenseId");
 
@@ -107,6 +112,7 @@ this.newuser.username= this.editdata.username;
         this.currentDate = this.currentDate.toISOString();
         this.currentDesc = expenseSnapshot.val().desc;
         this.currentRemark = expenseSnapshot.val().remark;
+        this.expenseImg = expenseSnapshot.val().imgUrl;
       });
   }
 
@@ -128,14 +134,31 @@ this.newuser.username= this.editdata.username;
     }
 
     this.expenseProvider.updateExpense(this.expenseId,spendDate,spendAmt,spendDesc,spendRemark,selected_cate)
-    .then(() => {console.log("EXPENSE UPDATED"); 
+    .then(() => {console.log("EXPENSE UPDATED");
+     const toast = this.toastCtrl.create({
+          message: 'The Expense was stored  into the Database',
+          duration: 3000
+        });
+        toast.present(); 
     this.goToViewExpense(); 
       })
     .catch(error => {console.log('update ERROR: ' + error.message); });
     
   }
   goToViewExpense(){
-    this.navCtrl.setRoot(ExpensehistoryPage);
+    this.navCtrl.push(ExpensehistoryPage);
   }
+
+
+  goToMenu() {
+    // this.auth.signOut();
+    this.navCtrl.push(MenuPage);
+  }
+
+  // detectFiles(event){
+  //   this.selectedFile = event.target.files[0];
+  //   console.log(event);
+  // }
+  
 
 }

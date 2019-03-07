@@ -5,28 +5,26 @@
   Ionic pages and navigation.
 -->
 <ion-header>
+    <ion-navbar>
+      <ion-title>
+        Expense History
+      </ion-title>
+     
+      <ion-buttons end>
+        <!-- <button ion-button icon-only (click)="goToLogin()">
+          <ion-icon name="log-out"></ion-icon>
+        </button> -->
+        <button ion-button icon-only (click)="goToMenu()">
+          <ion-icon name="menu"></ion-icon>
+        </button>
+      </ion-buttons>
+    </ion-navbar>
+  </ion-header>
 
-  <ion-navbar>
-      <ion-buttons start>
-          <button ion-button icon-only (click)="goToDashboard()">
-              <ion-icon ios="ios-home-outline" md="md-home-outline"></ion-icon>
-          </button>
-        </ion-buttons>
 
-        <ion-buttons end>
-            <button ion-button icon-only (click)="goToAddExpense()">
-              <ion-icon name="add"></ion-icon>
-            </button>
-          </ion-buttons>
-    <ion-title>Expenses Record</ion-title>
-  </ion-navbar>
-
-
-</ion-header>
 
 
 <ion-content>
-  <ion-toolbar>
     <div padding>
       <ion-segment [(ngModel)]="cat">
         <ion-segment-button value="tab1" (click)="getCurrentMthRecord()">
@@ -37,29 +35,43 @@
         </ion-segment-button>
       </ion-segment>
     </div>
-  </ion-toolbar>
   <form>
 
     <div class="details" [ngSwitch]="cat">
       <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
       <ion-list *ngSwitchCase="'tab1'">
-        <ion-item *ngFor="let expense of expenseList | orderBy: date : reverse" (click)="goToUpdateExpense(expense.id)">
-          <label style="text-transform: capitalize">{{expense.category}}</label>
-          <p>{{expense.desc}}</p>
-          <p>{{expense.date}}</p>
-          <p>{{expense.remark}}</p>
-          <p item-end style="color:crimson"><strong>{{expense.amount| currency:'USD':true:'1.2-2'}}</strong></p>
-        </ion-item>
+          <ion-item *ngFor="let expense of expenseList | orderBy: date : reverse">
+            <label style="text-transform: capitalize">{{expense.category}}</label>
+            <p>{{expense.desc}}</p>
+            <p>{{expense.date}}</p>
+            <p>{{expense.remark}}</p>
+            <p style="color:crimson"><strong>{{expense.amount| currency:'PHP':true:'1.2-2'}}</strong></p>  
+          
+          
+            <button item-end ion-button icon-only color="primary" (click)="goToUpdateExpense(expense.id)" style="border-radius: 25px; height: 40px;margin-right: 10px;margin-top: 30px;width: 35px;">
+              <ion-icon name="create"></ion-icon>
+            </button>
+            <button item-end ion-button icon-only color="danger" style="border-radius: 25px; height: 40px;width:auto;margin-right: 10px;margin-top: 30px;width: 35px;" (click)="alertRemove(expense.id)">
+              <ion-icon name="trash"></ion-icon>
+            </button>
+          </ion-item>
       </ion-list>
 
       <ion-list *ngSwitchCase="'tab2'">
-        <ion-item *ngFor="let expense of expenseList | orderBy: date : reverse" (click)="goToUpdateExpense(expense.id)">
-          <label style="text-transform: capitalize">{{expense.category}}</label>
-          <p>{{expense.desc}}</p>
-          <p>{{expense.date}}</p>
-          <p>{{expense.remark}}</p>
-          <p item-end style="color:crimson"><strong>{{expense.amount| currency:'USD':true:'1.2-2'}}</strong></p>
-        </ion-item>
+          <ion-item *ngFor="let expense of expenseList | orderBy: date : reverse">
+            <label style="text-transform: capitalize">{{expense.category}}</label>
+            <p>{{expense.desc}}</p>
+            <p>{{expense.date}}</p>
+            <p>{{expense.remark}}</p>
+            <p style="color:crimson"><strong>{{expense.amount| currency:'PHP':true:'1.2-2'}}</strong></p>  
+          
+            <button item-end ion-button icon-only color="primary" (click)="goToUpdateExpense(expense.id)" style="border-radius: 25px; height: 40px;margin-right: 10px;margin-top: 30px;width: 35px;">
+              <ion-icon name="create"></ion-icon>
+            </button>
+            <button item-end ion-button icon-only color="danger" style="border-radius: 25px; height: 40px;width:auto;margin-right: 10px;margin-top: 30px;width: 35px;" (click)="alertRemove(expense.id)">
+              <ion-icon name="trash"></ion-icon>
+            </button>
+         </ion-item>
       </ion-list>
     </div>
     <!--<button ion-button block (click)="goToDashboard()">View Dashboard</button>

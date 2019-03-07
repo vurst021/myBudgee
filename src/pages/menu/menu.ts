@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, Nav } from 'ionic-angular';
 
 import { ProfileProvider } from '../../providers/profile/profile';
+import { AuthProvider } from '../../providers/auth/auth';
 
 
 import { DashboardPage } from '../dashboard/dashboard';
@@ -10,6 +11,10 @@ import { ExpensehistoryPage } from '../expensehistory/expensehistory';
 import { TermsPage } from '../terms/terms';
 import { HelpPage } from '../help/help';
 import { LoginPage } from '../login/login';
+import 'firebase/auth';
+
+
+
 /**
  * Generated class for the MenuPage page.
  *
@@ -32,15 +37,36 @@ export interface PageInterface{
   templateUrl: 'menu.html',
 })
 export class MenuPage {
+  // Basic root for our content view
+  // rootPage = DashboardPage;
+ 
+  // Reference to the app's root nav
+  @ViewChild(Nav) nav: Nav;
+ 
+
+public userProfile: any;
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController,
+    public authProvider: AuthProvider,
+    public profileProvider: ProfileProvider,
+    public navParams: NavParams) {
+
+
   	
   }
 
+  ionViewDidLoad() {
+    this.profileProvider.getUserProfile().on("value", userProfileSnapshot => {
+      this.userProfile = userProfileSnapshot.val();
+      
+    });
+  }  
+
+
   	goToAcct() {
     
-      this.navCtrl.push(AccountPage);
+      this.navCtrl.setRoot(AccountPage);
     
   	}
   	
@@ -49,19 +75,20 @@ export class MenuPage {
   	}
 
   	goToExp(){
-  		this.navCtrl.push(ExpensehistoryPage);
+  		this.navCtrl.setRoot(ExpensehistoryPage);
   	}
 
   	goToHelp(){
-  		this.navCtrl.push(HelpPage);
+  		this.navCtrl.setRoot(HelpPage);
   	}
 
   	goToTerms(){
-  		this.navCtrl.push(TermsPage);
+  		this.navCtrl.setRoot(TermsPage);
   	}
 
-  	logOut(){
-  		// this.auth.signOut();
-			this.navCtrl.setRoot(LoginPage);
-  	}
+  	logOut(): void {
+    this.authProvider.logoutUser().then(() => {
+      this.navCtrl.setRoot("LoginPage");
+    });
+  }
 }

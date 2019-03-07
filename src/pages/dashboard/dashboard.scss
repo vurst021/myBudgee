@@ -1,4 +1,9 @@
 page-dashboard {
+    div.toolbar-background.toolbar-background-md{
+        background-color: #da9429;
+    }
+
+
  .scroll-content {
         background-color: map-get($colors, light);
     }
@@ -24,8 +29,9 @@ page-dashboard {
         text-align: right;
         
     }
-
-
+    .ion-navbar.toolbar.toolbar-md{
+        background-color: rgb(0,255,0);
+    }
     
 
 }
